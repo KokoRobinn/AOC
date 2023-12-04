@@ -9,8 +9,7 @@ defmodule Day2 do
 
     Enum.map(input, &Enum.map(&1, fn x -> String.trim(x) end))
     |> Enum.map(&gen_sets(&1, []))
-    #|> Enum.map(&Enum.reduce(&1, %{red: 0, green: 0, blue: 0}, fn %{red: r1, green: g1, blue: b1}, %{red: r2, green: g2, blue: b2} -> %{red: max(r1, r2), green: max(g1, g2), blue: max(b1, b2)} end)) #part 1
-    |> Enum.map(&Enum.reduce(&1, %{red: :infinity, green: :infinity, blue: :infinity}, fn %{red: r1, green: g1, blue: b1}, %{red: r2, green: g2, blue: b2} -> %{red: min(r1, r2), green: min(g1, g2), blue: min(b1, b2)} end)) #part 2
+    |> Enum.map(&Enum.reduce(&1, %{red: 0, green: 0, blue: 0}, fn %{red: r1, green: g1, blue: b1}, %{red: r2, green: g2, blue: b2} -> %{red: max(r1, r2), green: max(g1, g2), blue: max(b1, b2)} end))
     #|> find_valid(%{red: 12, green: 13, blue: 14}, {1, []}) # part 1
     |> Enum.map(&calc_power(&1))
     |> IO.inspect()
@@ -56,7 +55,6 @@ defmodule Day2 do
       " red" -> if round[:red] < x do gen_set(rest, %{round | red: x}) end
       " green" -> if round[:green] < x do gen_set(rest, %{round | green: x}) end
       " blue" -> if round[:blue] < x do gen_set(rest, %{round | blue: x}) end
-      _ -> raise "ööööh det är fel"
     end
   end
 
